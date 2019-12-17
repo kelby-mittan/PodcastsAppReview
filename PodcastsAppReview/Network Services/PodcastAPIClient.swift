@@ -70,4 +70,30 @@ struct PodcastAPIClient {
         }
         
     }
+    
+    static func getFavorites(completion: @escaping (Result<[PostPodcast],AppError>) -> ()) {
+        let podcastEndpointString = "https://5c2e2a592fffe80014bd6904.mockapi.io/api/v1/favorites"
+        
+        guard let url = URL(string: podcastEndpointString) else {
+            completion(.failure(.badURL(podcastEndpointString)))
+            return
+        }
+        
+        let request = URLRequest(url: url)
+        
+        NetworkHelper.shared.performDataTask(with: request) { (result) in
+            switch result {
+            case .failure(let appError):
+                completion(.failure(.networkClientError(appError)))
+            case .success(let data):
+                do {
+                    let podcastSearch = try JSONDecoder().decode([PostPodcast].self, from: data)
+                    let podcasts = podcastSearch.filter { $0.favoritedBy == "Kelby" }
+                    completion(.success(podcasts))
+                } catch {
+                    completion(.failure(.decodingError(error)))
+                }
+            }
+        }
+    }
 }

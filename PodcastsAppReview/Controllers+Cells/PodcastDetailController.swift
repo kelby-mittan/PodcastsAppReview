@@ -18,7 +18,11 @@ class PodcastDetailController: UIViewController {
     
     @IBOutlet var dateLabel: UILabel!
     
+    @IBOutlet var favButton: UIBarButtonItem!
+    
     var podcast: Podcast?
+    var favorite = Bool()
+    var favPodcast: PostPodcast?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,30 +31,60 @@ class PodcastDetailController: UIViewController {
     }
     
     func updateUI() {
-        guard let podcast = podcast else {
-            fatalError("could not get podcast")
-        }
         
-        collectionLabel.text = podcast.collectionName
-        artistNameLabel.text = podcast.artistName
-        
-        dateLabel.text = podcast.releaseDate.convertISODate()
-        
-        podcastArtImage.getImage(with: podcast.artworkUrl600) { [weak self] (result) in
-            switch result {
-            case .failure:
-                DispatchQueue.main.async {
-                    self?.podcastArtImage.image = UIImage(systemName: "person.fill")
+        if !favorite {
+            favButton.isEnabled = true
+            guard let podcast = podcast else {
+                fatalError("could not get podcast")
+            }
+            
+            collectionLabel.text = podcast.collectionName
+            artistNameLabel.text = podcast.artistName
+            
+            dateLabel.text = podcast.releaseDate.convertISODate()
+            
+            podcastArtImage.getImage(with: podcast.artworkUrl600) { [weak self] (result) in
+                switch result {
+                case .failure:
+                    DispatchQueue.main.async {
+                        self?.podcastArtImage.image = UIImage(systemName: "person.fill")
+                    }
+                case .success(let image):
+                    DispatchQueue.main.async {
+                        self?.podcastArtImage.image = image
+                    }
                 }
-            case .success(let image):
-                DispatchQueue.main.async {
-                    self?.podcastArtImage.image = image
+            }
+        } else {
+            favButton.isEnabled = false
+            guard let favPodcast = favPodcast else {
+                showAlert(title: "Error", message: "Could not load Favorite")
+                return
+            }
+            
+            collectionLabel.text = favPodcast.collectionName
+            artistNameLabel.text = favPodcast.favoritedBy
+            dateLabel.text = ""
+            
+            podcastArtImage.getImage(with: favPodcast.artworkUrl600) { [weak self] (result) in
+                switch result {
+                case .failure:
+                    DispatchQueue.main.async {
+                        self?.podcastArtImage.image = UIImage(systemName: "person.fill")
+                    }
+                case .success(let image):
+                    DispatchQueue.main.async {
+                        self?.podcastArtImage.image = image
+                    }
                 }
             }
         }
+        
     }
     
     @IBAction func favoritePodcastButton(_ sender: UIBarButtonItem) {
+        
+        sender.isEnabled = false
         
         guard let podcast = podcast else {
             fatalError("could not load podcasts")
@@ -67,7 +101,7 @@ class PodcastDetailController: UIViewController {
                 }
             case .success:
                 DispatchQueue.main.async {
-                    self?.showAlert(title: "Answer Posted", message: "Thanks for submitting an answer.") { alert in
+                    self?.showAlert(title: "Favorite Posted", message: "Thanks for favoriting.") { alert in
                         self?.dismiss(animated: true)
                     }
                 }

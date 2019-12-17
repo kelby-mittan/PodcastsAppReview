@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct PostPodcast: Encodable {
+struct PostPodcast: Codable {
     
     let trackId: Int
     let favoritedBy: String

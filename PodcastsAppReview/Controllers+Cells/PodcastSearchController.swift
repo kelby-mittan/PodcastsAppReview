@@ -15,26 +15,27 @@ class PodcastSearchController: UIViewController {
     @IBOutlet var searchBar: UISearchBar!
     
     var podcasts = [Podcast]() {
-            didSet {
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
+        didSet {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
             }
         }
-        
-        var searchQuery = "" {
-            didSet {
-                DispatchQueue.main.async {
-                    self.loadPodcasts(for: self.searchQuery.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!)
-                }
+    }
+    
+    var searchQuery = "" {
+        didSet {
+            DispatchQueue.main.async {
+                self.loadPodcasts(for: self.searchQuery.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!)
             }
         }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         tableView.dataSource = self
         searchBar.delegate = self
+        tableView.delegate = self
         
     }
     
@@ -59,10 +60,11 @@ class PodcastSearchController: UIViewController {
             fatalError("could not load")
         }
         podcastVC.podcast = podcasts[indexPath.row]
+        podcastVC.favorite = false
     }
-
     
-
+    
+    
 }
 
 extension PodcastSearchController: UITableViewDataSource {
@@ -87,7 +89,7 @@ extension PodcastSearchController: UITableViewDataSource {
 
 extension PodcastSearchController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 220
+        return 110
     }
 }
 
@@ -99,7 +101,7 @@ extension PodcastSearchController: UISearchBarDelegate {
             return
         }
         searchQuery = searchText.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
-
+        
         PodcastAPIClient.fetchPodcasts(for: searchQuery) { [weak self] (result) in
             switch result {
             case .failure(let appError):
@@ -116,7 +118,7 @@ extension PodcastSearchController: UISearchBarDelegate {
         
         searchQuery = searchText.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
         searchQuery = searchQuery.replacingOccurrences(of: " ", with: "")
-
+        
         PodcastAPIClient.fetchPodcasts(for: searchQuery) { [weak self] (result) in
             switch result {
             case .failure(let appError):
