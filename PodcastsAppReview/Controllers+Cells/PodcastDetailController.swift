@@ -12,9 +12,9 @@ class PodcastDetailController: UIViewController {
     
     @IBOutlet var podcastArtImage: UIImageView!
     
-    @IBOutlet var artistNameLabel: UILabel!
+    @IBOutlet var collectionLabel: UILabel!
     
-    @IBOutlet var collectionNameLabel: UILabel!
+    @IBOutlet var artistNameLabel: UILabel!
     
     @IBOutlet var dateLabel: UILabel!
     
@@ -31,9 +31,10 @@ class PodcastDetailController: UIViewController {
             fatalError("could not get podcast")
         }
         
+        collectionLabel.text = podcast.collectionName
         artistNameLabel.text = podcast.artistName
-        collectionNameLabel.text = podcast.collectionName
         
+        dateLabel.text = podcast.releaseDate.convertISODate()
         
         podcastArtImage.getImage(with: podcast.artworkUrl600) { [weak self] (result) in
             switch result {

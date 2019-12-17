@@ -52,21 +52,10 @@ struct PodcastAPIClient {
             
             request.httpMethod = "Post"
             
-            // 3. let web API know the type of data being sent
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             
-            // 4. use httpBody on request to add the data from the postAnswer model
-            /*
-                 {
-                     "description": "When I run my app there isn't any data being loaded into my table view",
-                     "title": "Can't get data in my table view - Kelby",
-                     "labName": "Comic Lab"
-                 }
-             */
             request.httpBody = data
-            
-            // now we will use NetworkHelper (URLSession wrapper class) to make the network POST request
-            
+                        
             NetworkHelper.shared.performDataTask(with: request) { (result) in
                 switch result {
                 case .failure(let appError):
