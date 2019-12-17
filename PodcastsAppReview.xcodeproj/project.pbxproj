@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		0247229923A84AC000423A0A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0247229823A84AC000423A0A /* AppDelegate.swift */; };
 		0247229B23A84AC000423A0A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0247229A23A84AC000423A0A /* SceneDelegate.swift */; };
-		0247229D23A84AC000423A0A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0247229C23A84AC000423A0A /* ViewController.swift */; };
+		0247229D23A84AC000423A0A /* PodcastSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0247229C23A84AC000423A0A /* PodcastSearchController.swift */; };
 		024722A023A84AC000423A0A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0247229E23A84AC000423A0A /* Main.storyboard */; };
 		024722A223A84AC400423A0A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 024722A123A84AC400423A0A /* Assets.xcassets */; };
 		024722A523A84AC400423A0A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 024722A323A84AC400423A0A /* LaunchScreen.storyboard */; };
@@ -34,7 +34,7 @@
 		0247229523A84AC000423A0A /* PodcastsAppReview.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PodcastsAppReview.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0247229823A84AC000423A0A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0247229A23A84AC000423A0A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		0247229C23A84AC000423A0A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		0247229C23A84AC000423A0A /* PodcastSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastSearchController.swift; sourceTree = "<group>"; };
 		0247229F23A84AC000423A0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		024722A123A84AC400423A0A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		024722A423A84AC400423A0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -87,14 +87,12 @@
 		0247229723A84AC000423A0A /* PodcastsAppReview */ = {
 			isa = PBXGroup;
 			children = (
-				024722BA23A84ADE00423A0A /* NetworkHelper.swift */,
-				024722BC23A84AF800423A0A /* AppError.swift */,
-				024722BE23A84B1800423A0A /* PodcastAPIClient.swift */,
-				024722C023A84B5000423A0A /* PodcastSearch.swift */,
+				024722C223A854AF00423A0A /* Network Services */,
+				024722C423A854EC00423A0A /* Models */,
+				024722C323A854C500423A0A /* Controllers+Cells */,
+				0247229E23A84AC000423A0A /* Main.storyboard */,
 				0247229823A84AC000423A0A /* AppDelegate.swift */,
 				0247229A23A84AC000423A0A /* SceneDelegate.swift */,
-				0247229C23A84AC000423A0A /* ViewController.swift */,
-				0247229E23A84AC000423A0A /* Main.storyboard */,
 				024722A123A84AC400423A0A /* Assets.xcassets */,
 				024722A323A84AC400423A0A /* LaunchScreen.storyboard */,
 				024722A623A84AC400423A0A /* Info.plist */,
@@ -109,6 +107,32 @@
 				024722B123A84AC400423A0A /* Info.plist */,
 			);
 			path = PodcastsAppReviewTests;
+			sourceTree = "<group>";
+		};
+		024722C223A854AF00423A0A /* Network Services */ = {
+			isa = PBXGroup;
+			children = (
+				024722BA23A84ADE00423A0A /* NetworkHelper.swift */,
+				024722BC23A84AF800423A0A /* AppError.swift */,
+				024722BE23A84B1800423A0A /* PodcastAPIClient.swift */,
+			);
+			path = "Network Services";
+			sourceTree = "<group>";
+		};
+		024722C323A854C500423A0A /* Controllers+Cells */ = {
+			isa = PBXGroup;
+			children = (
+				0247229C23A84AC000423A0A /* PodcastSearchController.swift */,
+			);
+			path = "Controllers+Cells";
+			sourceTree = "<group>";
+		};
+		024722C423A854EC00423A0A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				024722C023A84B5000423A0A /* PodcastSearch.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -213,7 +237,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				024722BB23A84ADE00423A0A /* NetworkHelper.swift in Sources */,
-				0247229D23A84AC000423A0A /* ViewController.swift in Sources */,
+				0247229D23A84AC000423A0A /* PodcastSearchController.swift in Sources */,
 				024722BF23A84B1800423A0A /* PodcastAPIClient.swift in Sources */,
 				024722BD23A84AF800423A0A /* AppError.swift in Sources */,
 				024722C123A84B5000423A0A /* PodcastSearch.swift in Sources */,

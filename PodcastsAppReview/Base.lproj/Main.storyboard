@@ -10,7 +10,7 @@
         <!--Podcasts-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="PodcastSearchController" customModule="Podcasts" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="PodcastSearchController" customModule="PodcastsAppReview" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -76,6 +76,10 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Podcasts" id="i8T-Qt-7a1"/>
+                    <connections>
+                        <outlet property="searchBar" destination="Ri3-Yu-ABM" id="DLS-Cr-CM2"/>
+                        <outlet property="tableView" destination="emJ-0n-k0g" id="V7n-Ae-XNu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

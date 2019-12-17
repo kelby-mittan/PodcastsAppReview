@@ -9,9 +9,9 @@
 import Foundation
 
 struct PodcastAPIClient {
-    static func fetchPodcasts(completion: @escaping (Result<[Podcast],AppError>) -> ()) {
+    static func fetchPodcasts(for searchQuery: String, completion: @escaping (Result<[Podcast],AppError>) -> ()) {
         
-        let podcastEndpointString = "https://itunes.apple.com/search?media=podcast&limit=200&term=swift"
+        let podcastEndpointString = "https://itunes.apple.com/search?media=podcast&limit=200&term=\(searchQuery)"
         
         guard let url = URL(string: podcastEndpointString) else {
             completion(.failure(.badURL(podcastEndpointString)))
@@ -32,8 +32,6 @@ struct PodcastAPIClient {
                 } catch {
                     completion(.failure(.decodingError(error)))
                 }
-                
-                
             }
         }
     }
