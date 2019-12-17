@@ -23,24 +23,24 @@
                                 <rect key="frame" x="0.0" y="144" width="414" height="669"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="podcastCell" rowHeight="114" id="Vdk-vN-YRw">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="podcastCell" rowHeight="114" id="Vdk-vN-YRw" customClass="PodcastCell" customModule="PodcastsAppReview" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="114"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Vdk-vN-YRw" id="9aO-Fk-nNi">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="114"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Lmh-eG-QTj">
-                                                    <rect key="frame" x="0.0" y="0.0" width="165.5" height="114"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Lmh-eG-QTj">
+                                                    <rect key="frame" x="0.0" y="0.0" width="124" height="114"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Collection Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bpE-Vr-qat">
-                                                    <rect key="frame" x="173.5" y="11" width="212.5" height="21"/>
+                                                    <rect key="frame" x="132" y="11" width="254" height="21"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CQo-ch-GnB">
-                                                    <rect key="frame" x="173.5" y="40" width="212.5" height="18"/>
+                                                    <rect key="frame" x="132" y="40" width="254" height="18"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -49,7 +49,7 @@
                                             <constraints>
                                                 <constraint firstItem="Lmh-eG-QTj" firstAttribute="top" secondItem="9aO-Fk-nNi" secondAttribute="top" id="DYQ-IV-nYb"/>
                                                 <constraint firstItem="bpE-Vr-qat" firstAttribute="top" secondItem="9aO-Fk-nNi" secondAttribute="topMargin" id="G2L-ba-oKP"/>
-                                                <constraint firstItem="Lmh-eG-QTj" firstAttribute="width" secondItem="9aO-Fk-nNi" secondAttribute="width" multiplier="0.4" id="VMJ-q0-Dal"/>
+                                                <constraint firstItem="Lmh-eG-QTj" firstAttribute="width" secondItem="9aO-Fk-nNi" secondAttribute="width" multiplier="0.3" id="VMJ-q0-Dal"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="bpE-Vr-qat" secondAttribute="trailing" constant="8" id="aqQ-rn-jhl"/>
                                                 <constraint firstAttribute="bottom" secondItem="Lmh-eG-QTj" secondAttribute="bottom" id="cJV-Ql-1YX"/>
                                                 <constraint firstItem="bpE-Vr-qat" firstAttribute="leading" secondItem="Lmh-eG-QTj" secondAttribute="trailing" constant="8" id="e95-oA-DtY"/>
@@ -59,6 +59,12 @@
                                                 <constraint firstItem="Lmh-eG-QTj" firstAttribute="leading" secondItem="9aO-Fk-nNi" secondAttribute="leading" id="smT-vs-8B0"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="artistLabel" destination="CQo-ch-GnB" id="3ei-3p-3i4"/>
+                                            <outlet property="collectionLabel" destination="bpE-Vr-qat" id="ZFU-XJ-XiW"/>
+                                            <outlet property="podcastArtImage" destination="Lmh-eG-QTj" id="eKG-Kt-2II"/>
+                                            <segue destination="YZA-FJ-bIr" kind="show" id="1fr-2Y-5F1"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -84,6 +90,70 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1957.9710144927537" y="112.5"/>
+        </scene>
+        <!--Podcast Detail Controller-->
+        <scene sceneID="4ZW-iq-E0P">
+            <objects>
+                <viewController id="YZA-FJ-bIr" customClass="PodcastDetailController" customModule="PodcastsAppReview" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dvD-H0-MKS">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4X6-2K-R4c">
+                                <rect key="frame" x="82" y="108" width="250" height="250"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="250" id="Ifw-G8-PIw"/>
+                                    <constraint firstAttribute="width" constant="250" id="VsG-sU-vTw"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jiP-13-3uH">
+                                <rect key="frame" x="20" y="374" width="374" height="21"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Collection Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g9H-Xq-n10">
+                                <rect key="frame" x="20" y="403" width="374" height="21"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fJt-CX-2T8">
+                                <rect key="frame" x="20" y="432" width="374" height="21"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="g9H-Xq-n10" firstAttribute="top" secondItem="jiP-13-3uH" secondAttribute="bottom" constant="8" id="8VH-pY-YFo"/>
+                            <constraint firstItem="fJt-CX-2T8" firstAttribute="top" secondItem="g9H-Xq-n10" secondAttribute="bottom" constant="8" id="Doo-Tn-NQG"/>
+                            <constraint firstItem="7Ry-xQ-ejM" firstAttribute="trailing" secondItem="fJt-CX-2T8" secondAttribute="trailing" constant="20" id="LzG-iD-Gf0"/>
+                            <constraint firstItem="7Ry-xQ-ejM" firstAttribute="trailing" secondItem="jiP-13-3uH" secondAttribute="trailing" constant="20" id="MLj-hO-5kv"/>
+                            <constraint firstItem="7Ry-xQ-ejM" firstAttribute="trailing" secondItem="g9H-Xq-n10" secondAttribute="trailing" constant="20" id="bSR-bS-7eU"/>
+                            <constraint firstItem="fJt-CX-2T8" firstAttribute="leading" secondItem="7Ry-xQ-ejM" secondAttribute="leading" constant="20" id="cXN-aY-ARl"/>
+                            <constraint firstItem="jiP-13-3uH" firstAttribute="top" secondItem="4X6-2K-R4c" secondAttribute="bottom" constant="16" id="dYh-oH-n8z"/>
+                            <constraint firstItem="4X6-2K-R4c" firstAttribute="centerX" secondItem="dvD-H0-MKS" secondAttribute="centerX" id="nik-17-wY4"/>
+                            <constraint firstItem="g9H-Xq-n10" firstAttribute="leading" secondItem="7Ry-xQ-ejM" secondAttribute="leading" constant="20" id="rVJ-kG-Lfz"/>
+                            <constraint firstItem="jiP-13-3uH" firstAttribute="leading" secondItem="7Ry-xQ-ejM" secondAttribute="leading" constant="20" id="t83-1F-VnW"/>
+                            <constraint firstItem="4X6-2K-R4c" firstAttribute="top" secondItem="7Ry-xQ-ejM" secondAttribute="top" constant="20" id="vuH-sC-gl7"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="7Ry-xQ-ejM"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Tz1-wG-Dly">
+                        <barButtonItem key="rightBarButtonItem" image="plus" catalog="system" id="EvI-gp-J7c"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="artistNameLabel" destination="jiP-13-3uH" id="guI-19-8vS"/>
+                        <outlet property="collectionNameLabel" destination="g9H-Xq-n10" id="fQr-32-nJp"/>
+                        <outlet property="dateLabel" destination="fJt-CX-2T8" id="6JJ-M6-KCV"/>
+                        <outlet property="podcastArtImage" destination="4X6-2K-R4c" id="nG1-KN-VNB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qGa-4J-4my" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2933" y="113"/>
         </scene>
         <!--Search-->
         <scene sceneID="VBP-cc-dYu">
@@ -161,6 +231,7 @@
     </scenes>
     <resources>
         <image name="magnifyingglass" catalog="system" width="64" height="56"/>
+        <image name="plus" catalog="system" width="64" height="56"/>
         <image name="star.fill" catalog="system" width="64" height="58"/>
     </resources>
 </document>
