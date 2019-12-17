@@ -49,4 +49,10 @@ class PodcastDetailController: UIViewController {
         }
     }
     
+    @IBAction func favoritePodcastButton(_ sender: UIBarButtonItem) {
+        
+        
+    }
+    
+    
 }

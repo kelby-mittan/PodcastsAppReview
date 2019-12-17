@@ -37,8 +37,48 @@ struct PodcastAPIClient {
         }
     }
     
-    static func postPodcast() {
+    static func postPodcast(for postedPodcast: PostPodcast, completion: @escaping (Result<Bool, AppError>) -> ()) {
         
+        let favoritePodcastEndpoint = "https://5c2e2a592fffe80014bd6904.mockapi.io/api/v1/favorites"
+        
+        guard let url = URL(string: favoritePodcastEndpoint) else {
+            return
+        }
+        
+        do {
+            let data = try JSONEncoder().encode(postedPodcast)
+            
+            var request = URLRequest(url: url)
+            
+            request.httpMethod = "Post"
+            
+            // 3. let web API know the type of data being sent
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            
+            // 4. use httpBody on request to add the data from the postAnswer model
+            /*
+                 {
+                     "description": "When I run my app there isn't any data being loaded into my table view",
+                     "title": "Can't get data in my table view - Kelby",
+                     "labName": "Comic Lab"
+                 }
+             */
+            request.httpBody = data
+            
+            // now we will use NetworkHelper (URLSession wrapper class) to make the network POST request
+            
+            NetworkHelper.shared.performDataTask(with: request) { (result) in
+                switch result {
+                case .failure(let appError):
+                    completion(.failure(.networkClientError(appError)))
+                case .success:
+                    completion(.success(true))
+                }
+            }
+            
+        } catch {
+            completion(.failure(.encodingError(error)))
+        }
         
     }
 }

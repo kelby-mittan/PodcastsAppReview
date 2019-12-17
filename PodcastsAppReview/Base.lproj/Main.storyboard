@@ -142,7 +142,11 @@
                         <viewLayoutGuide key="safeArea" id="7Ry-xQ-ejM"/>
                     </view>
                     <navigationItem key="navigationItem" id="Tz1-wG-Dly">
-                        <barButtonItem key="rightBarButtonItem" image="plus" catalog="system" id="EvI-gp-J7c"/>
+                        <barButtonItem key="rightBarButtonItem" image="plus" catalog="system" id="EvI-gp-J7c">
+                            <connections>
+                                <action selector="favoritePodcastButton:" destination="YZA-FJ-bIr" id="WOF-ju-JfM"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="artistNameLabel" destination="jiP-13-3uH" id="guI-19-8vS"/>
