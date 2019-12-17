@@ -51,6 +51,27 @@ class PodcastDetailController: UIViewController {
     
     @IBAction func favoritePodcastButton(_ sender: UIBarButtonItem) {
         
+        guard let podcast = podcast else {
+            fatalError("could not load podcasts")
+        }
+        
+        let postedPodcast = PostPodcast(trackId: podcast.trackId, favoritedBy: "Kelby", collectionName: podcast.collectionName, artworkUrl600: podcast.artworkUrl600)
+        
+        PodcastAPIClient.postPodcast(for: postedPodcast) { [weak self] (result) in
+            switch result {
+            case .failure(let appError):
+                DispatchQueue.main.async {
+                    self?.showAlert(title: "Failed to Post", message: "\(appError)")
+                    sender.isEnabled = true
+                }
+            case .success:
+                DispatchQueue.main.async {
+                    self?.showAlert(title: "Answer Posted", message: "Thanks for submitting an answer.") { alert in
+                        self?.dismiss(animated: true)
+                    }
+                }
+            }
+        }
         
     }
     
