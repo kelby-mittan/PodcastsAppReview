@@ -20,9 +20,12 @@ class PodcastDetailController: UIViewController {
     
     @IBOutlet var favButton: UIBarButtonItem!
     
+    @IBOutlet var genreLabel: UILabel!
+    
     var podcast: Podcast?
     var favorite = Bool()
     var favPodcast: PostPodcast?
+    var genreArr = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,9 +37,13 @@ class PodcastDetailController: UIViewController {
         
         if !favorite {
             favButton.isEnabled = true
-            guard let podcast = podcast else {
+            guard let podcast = podcast, let genres = podcast.genres else {
                 fatalError("could not get podcast")
             }
+            for genre in genres {
+                genreArr.append(genre)
+            }
+            genreLabel.text = "Genres: \(genreArr.joined(separator: ", "))"
             
             collectionLabel.text = podcast.collectionName
             artistNameLabel.text = podcast.artistName
@@ -71,6 +78,16 @@ class PodcastDetailController: UIViewController {
                     DispatchQueue.main.async {
                         self?.collectionLabel.text = podcast.collectionName
                         self?.artistNameLabel.text = podcast.artistName
+                        self?.dateLabel.text = podcast.releaseDate.convertISODate()
+                        
+                        guard let genres = podcast.genres else {
+                            return
+                        }
+                        for genre in genres {
+                            self?.genreArr.append(genre)
+                        }
+                        self?.genreLabel.text = self?.genreArr.joined(separator: ", ")
+                        
                         self?.podcastArtImage.getImage(with: podcast.artworkUrl600) { [weak self] (result) in
                             switch result {
                             case .failure:
@@ -99,6 +116,8 @@ class PodcastDetailController: UIViewController {
         }
         
         let postedPodcast = PostPodcast(trackId: podcast.trackId, favoritedBy: "Kelby", collectionName: podcast.collectionName, artworkUrl600: podcast.artworkUrl600)
+        
+//        let postedPodcast = Podcast(artistName: podcast.artistName, collectionName: podcast.collectionName, artworkUrl100: podcast.artworkUrl100, artworkUrl600: podcast.artworkUrl600, trackId: podcast.trackId, releaseDate: podcast.releaseDate, favoritedBy: "Kelby", genres: podcast.genres)
         
         PodcastAPIClient.postPodcast(for: postedPodcast) { [weak self] (result) in
             switch result {

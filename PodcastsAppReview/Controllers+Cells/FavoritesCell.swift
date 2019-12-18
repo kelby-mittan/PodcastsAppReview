@@ -19,7 +19,7 @@ class FavoritesCell: UITableViewCell {
     
     func configureCell(for favorite: PostPodcast) {
         collectionLabel.text = favorite.collectionName
-        favoriteLabel.text = favorite.favoritedBy
+        favoriteLabel.text = "Favorited by: \(favorite.favoritedBy)"
         
         artworkImage.getImage(with: favorite.artworkUrl600) { [weak self] (result) in
             switch result {

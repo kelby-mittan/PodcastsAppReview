@@ -100,26 +100,32 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4X6-2K-R4c">
-                                <rect key="frame" x="82" y="108" width="250" height="250"/>
+                                <rect key="frame" x="82" y="144.5" width="250" height="250"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="250" id="Ifw-G8-PIw"/>
                                     <constraint firstAttribute="width" constant="250" id="VsG-sU-vTw"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Collection Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jiP-13-3uH">
-                                <rect key="frame" x="20" y="374" width="374" height="20.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Collection Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jiP-13-3uH">
+                                <rect key="frame" x="20" y="108" width="374" height="20.5"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g9H-Xq-n10">
-                                <rect key="frame" x="20" y="402.5" width="374" height="21"/>
+                                <rect key="frame" x="20" y="414.5" width="374" height="21"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fJt-CX-2T8">
-                                <rect key="frame" x="20" y="431.5" width="374" height="21"/>
+                                <rect key="frame" x="20" y="443.5" width="374" height="21"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genres" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="svL-MF-PcW">
+                                <rect key="frame" x="20" y="472.5" width="374" height="21"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -127,17 +133,20 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="g9H-Xq-n10" firstAttribute="top" secondItem="jiP-13-3uH" secondAttribute="bottom" constant="8" id="8VH-pY-YFo"/>
                             <constraint firstItem="fJt-CX-2T8" firstAttribute="top" secondItem="g9H-Xq-n10" secondAttribute="bottom" constant="8" id="Doo-Tn-NQG"/>
+                            <constraint firstItem="g9H-Xq-n10" firstAttribute="top" secondItem="4X6-2K-R4c" secondAttribute="bottom" constant="20" id="Gpv-O9-hIg"/>
+                            <constraint firstItem="svL-MF-PcW" firstAttribute="leading" secondItem="7Ry-xQ-ejM" secondAttribute="leading" constant="20" id="IW7-df-WPw"/>
                             <constraint firstItem="7Ry-xQ-ejM" firstAttribute="trailing" secondItem="fJt-CX-2T8" secondAttribute="trailing" constant="20" id="LzG-iD-Gf0"/>
                             <constraint firstItem="7Ry-xQ-ejM" firstAttribute="trailing" secondItem="jiP-13-3uH" secondAttribute="trailing" constant="20" id="MLj-hO-5kv"/>
+                            <constraint firstItem="4X6-2K-R4c" firstAttribute="top" secondItem="jiP-13-3uH" secondAttribute="bottom" constant="16" id="XnL-rb-AcH"/>
+                            <constraint firstItem="7Ry-xQ-ejM" firstAttribute="trailing" secondItem="svL-MF-PcW" secondAttribute="trailing" constant="20" id="YaY-rS-t0E"/>
                             <constraint firstItem="7Ry-xQ-ejM" firstAttribute="trailing" secondItem="g9H-Xq-n10" secondAttribute="trailing" constant="20" id="bSR-bS-7eU"/>
                             <constraint firstItem="fJt-CX-2T8" firstAttribute="leading" secondItem="7Ry-xQ-ejM" secondAttribute="leading" constant="20" id="cXN-aY-ARl"/>
-                            <constraint firstItem="jiP-13-3uH" firstAttribute="top" secondItem="4X6-2K-R4c" secondAttribute="bottom" constant="16" id="dYh-oH-n8z"/>
+                            <constraint firstItem="jiP-13-3uH" firstAttribute="top" secondItem="7Ry-xQ-ejM" secondAttribute="top" constant="20" id="hOg-uf-3LD"/>
                             <constraint firstItem="4X6-2K-R4c" firstAttribute="centerX" secondItem="dvD-H0-MKS" secondAttribute="centerX" id="nik-17-wY4"/>
                             <constraint firstItem="g9H-Xq-n10" firstAttribute="leading" secondItem="7Ry-xQ-ejM" secondAttribute="leading" constant="20" id="rVJ-kG-Lfz"/>
+                            <constraint firstItem="svL-MF-PcW" firstAttribute="top" secondItem="fJt-CX-2T8" secondAttribute="bottom" constant="8" id="sZr-S0-e3t"/>
                             <constraint firstItem="jiP-13-3uH" firstAttribute="leading" secondItem="7Ry-xQ-ejM" secondAttribute="leading" constant="20" id="t83-1F-VnW"/>
-                            <constraint firstItem="4X6-2K-R4c" firstAttribute="top" secondItem="7Ry-xQ-ejM" secondAttribute="top" constant="20" id="vuH-sC-gl7"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="7Ry-xQ-ejM"/>
                     </view>
@@ -153,6 +162,7 @@
                         <outlet property="collectionLabel" destination="jiP-13-3uH" id="guI-19-8vS"/>
                         <outlet property="dateLabel" destination="fJt-CX-2T8" id="6JJ-M6-KCV"/>
                         <outlet property="favButton" destination="EvI-gp-J7c" id="w45-5t-BqZ"/>
+                        <outlet property="genreLabel" destination="svL-MF-PcW" id="l2o-sa-nwr"/>
                         <outlet property="podcastArtImage" destination="4X6-2K-R4c" id="nG1-KN-VNB"/>
                     </connections>
                 </viewController>

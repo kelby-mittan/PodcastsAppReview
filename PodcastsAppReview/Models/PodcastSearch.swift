@@ -8,11 +8,11 @@
 
 import Foundation
 
-struct PodcastSearch: Decodable {
+struct PodcastSearch: Codable {
     let results: [Podcast]
 }
 
-struct Podcast: Decodable {
+struct Podcast: Codable {
     
     let artistName: String
     let collectionName: String
@@ -20,5 +20,7 @@ struct Podcast: Decodable {
     let artworkUrl600: String
     let trackId: Int
     let releaseDate: String
+    let favoritedBy: String?
+    let genres: [String]?
     
 }
