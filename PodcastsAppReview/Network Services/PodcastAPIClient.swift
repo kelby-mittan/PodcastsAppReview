@@ -96,4 +96,30 @@ struct PodcastAPIClient {
             }
         }
     }
+    
+    static func getPodcastById(for trackId: Int, completion: @escaping (Result<Podcast,AppError>) -> ()) {
+        let podcastEndpointString = "https://itunes.apple.com/search?media=podcast&limit=200&term=\(trackId.description)"
+        
+        guard let url = URL(string: podcastEndpointString) else {
+            completion(.failure(.badURL(podcastEndpointString)))
+            return
+        }
+        
+        let request = URLRequest(url: url)
+        
+        NetworkHelper.shared.performDataTask(with: request) { (result) in
+            switch result {
+            case .failure(let appError):
+                completion(.failure(.networkClientError(appError)))
+            case .success(let data):
+                do {
+                    let searchResults = try JSONDecoder().decode(PodcastSearch.self, from: data)
+                    let podcast = searchResults.results.first
+                    completion(.success(podcast!))
+                } catch {
+                    completion(.failure(.decodingError(error)))
+                }
+            }
+        }
+    }
 }

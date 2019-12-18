@@ -20,11 +20,11 @@ class PodcastCell: UITableViewCell {
         collectionLabel.text = podcast.collectionName
         artistLabel.text = podcast.artistName
         
-        podcastArtImage.getImage(with: podcast.artworkUrl100) { [weak self] (result) in
+        podcastArtImage.getImage(with: podcast.artworkUrl600) { [weak self] (result) in
             switch result {
             case .failure:
                 DispatchQueue.main.async {
-                    self?.podcastArtImage.image = UIImage(systemName: "person.fill")
+                    self?.podcastArtImage.image = UIImage(systemName: "music.house.fill")
                 }
             case .success(let image):
                 DispatchQueue.main.async {

@@ -25,7 +25,7 @@ class FavoritesCell: UITableViewCell {
             switch result {
             case .failure:
                 DispatchQueue.main.async {
-                    self?.artworkImage.image = UIImage(systemName: "person.fill")
+                    self?.artworkImage.image = UIImage(systemName: "music.house.fill")
                 }
             case .success(let image):
                 DispatchQueue.main.async {

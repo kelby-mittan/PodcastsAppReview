@@ -47,7 +47,7 @@ class PodcastDetailController: UIViewController {
                 switch result {
                 case .failure:
                     DispatchQueue.main.async {
-                        self?.podcastArtImage.image = UIImage(systemName: "person.fill")
+                        self?.podcastArtImage.image = UIImage(systemName: "music.house.fill")
                     }
                 case .success(let image):
                     DispatchQueue.main.async {
@@ -55,6 +55,7 @@ class PodcastDetailController: UIViewController {
                     }
                 }
             }
+            
         } else {
             favButton.isEnabled = false
             guard let favPodcast = favPodcast else {
@@ -62,25 +63,32 @@ class PodcastDetailController: UIViewController {
                 return
             }
             
-            collectionLabel.text = favPodcast.collectionName
-            artistNameLabel.text = favPodcast.favoritedBy
-            dateLabel.text = ""
-            
-            podcastArtImage.getImage(with: favPodcast.artworkUrl600) { [weak self] (result) in
+            PodcastAPIClient.getPodcastById(for: favPodcast.trackId) { [weak self] (result) in
                 switch result {
-                case .failure:
+                case .failure(let appError):
+                    print(appError)
+                case .success(let podcast):
                     DispatchQueue.main.async {
-                        self?.podcastArtImage.image = UIImage(systemName: "person.fill")
-                    }
-                case .success(let image):
-                    DispatchQueue.main.async {
-                        self?.podcastArtImage.image = image
+                        self?.collectionLabel.text = podcast.collectionName
+                        self?.artistNameLabel.text = podcast.artistName
+                        self?.podcastArtImage.getImage(with: podcast.artworkUrl600) { [weak self] (result) in
+                            switch result {
+                            case .failure:
+                                DispatchQueue.main.async {
+                                    self?.podcastArtImage.image = UIImage(systemName: "music.house.fill")
+                                }
+                            case .success(let image):
+                                DispatchQueue.main.async {
+                                    self?.podcastArtImage.image = image
+                                }
+                            }
+                        }
                     }
                 }
             }
         }
-        
     }
+    
     
     @IBAction func favoritePodcastButton(_ sender: UIBarButtonItem) {
         

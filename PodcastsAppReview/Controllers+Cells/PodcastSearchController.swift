@@ -32,7 +32,7 @@ class PodcastSearchController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
         tableView.dataSource = self
         searchBar.delegate = self
         tableView.delegate = self
@@ -44,7 +44,9 @@ class PodcastSearchController: UIViewController {
         PodcastAPIClient.fetchPodcasts(for: search) { [weak self] (result) in
             switch result {
             case .failure(let appError):
-                print(appError)
+                DispatchQueue.main.async {
+                    self?.showAlert(title: "Error", message: "\(appError)")
+                }
             case .success(let podcasts):
                 DispatchQueue.main.async {
                     self?.podcasts = podcasts
@@ -105,7 +107,9 @@ extension PodcastSearchController: UISearchBarDelegate {
         PodcastAPIClient.fetchPodcasts(for: searchQuery) { [weak self] (result) in
             switch result {
             case .failure(let appError):
-                print(appError)
+                DispatchQueue.main.async {
+                    self?.showAlert(title: "Error", message: "\(appError)")
+                }
             case .success(let podcasts):
                 DispatchQueue.main.async {
                     self?.podcasts = podcasts
@@ -122,7 +126,9 @@ extension PodcastSearchController: UISearchBarDelegate {
         PodcastAPIClient.fetchPodcasts(for: searchQuery) { [weak self] (result) in
             switch result {
             case .failure(let appError):
-                print(appError)
+                DispatchQueue.main.async {
+                    self?.showAlert(title: "Error", message: "\(appError)")
+                }
             case .success(let podcasts):
                 DispatchQueue.main.async {
                     self?.podcasts = podcasts
