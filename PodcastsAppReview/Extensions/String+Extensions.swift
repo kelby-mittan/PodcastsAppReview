@@ -18,7 +18,7 @@ extension String {
             .withInternetDateTime,
             .withFullDate,
             .withFullTime,
-            .withFractionalSeconds, // must have this option
+//            .withFractionalSeconds, // must have this option
             .withColonSeparatorInTimeZone
         ]
         return isoDateFormatter

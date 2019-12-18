@@ -30,7 +30,7 @@ class PodcastsAppReviewTests: XCTestCase {
                     let searchResults = try JSONDecoder().decode(PodcastSearch.self, from: data)
                     let podcasts = searchResults.results
                     
-                    XCTAssertEqual(podcasts.count, 123, "Should be 3")
+                    XCTAssertEqual(podcasts.count, 123, "Should be 123")
                 } catch {
                     XCTFail()
                 }

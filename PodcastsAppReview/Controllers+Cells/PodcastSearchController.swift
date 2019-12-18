@@ -11,7 +11,6 @@ import UIKit
 class PodcastSearchController: UIViewController {
     
     @IBOutlet var tableView: UITableView!
-    
     @IBOutlet var searchBar: UISearchBar!
     
     var podcasts = [Podcast]() {
@@ -32,7 +31,7 @@ class PodcastSearchController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         tableView.dataSource = self
         searchBar.delegate = self
         tableView.delegate = self
@@ -65,8 +64,6 @@ class PodcastSearchController: UIViewController {
         podcastVC.favorite = false
     }
     
-    
-    
 }
 
 extension PodcastSearchController: UITableViewDataSource {
@@ -80,9 +77,7 @@ extension PodcastSearchController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "podcastCell", for: indexPath) as? PodcastCell else {
             fatalError()
         }
-        
         let podcast = podcasts[indexPath.row]
-        
         cell.configureCell(for: podcast)
         
         return cell

@@ -65,7 +65,8 @@ class FavoritesViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
         guard let podcastVC = segue.destination as? PodcastDetailController, let indexPath = tableView.indexPathForSelectedRow else {
-            fatalError("could not load")
+            print("could not load")
+            return
         }
         podcastVC.favPodcast = podcasts[indexPath.row]
         podcastVC.favorite = true

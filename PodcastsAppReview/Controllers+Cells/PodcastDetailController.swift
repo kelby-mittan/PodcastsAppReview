@@ -20,7 +20,6 @@ class PodcastDetailController: UIViewController {
     var podcast: Podcast?
     var favorite = Bool()
     var favPodcast: Podcast?
-    var favoritePodcast: Podcast?
     var genreArr = [String]()
     
     override func viewDidLoad() {
@@ -43,9 +42,7 @@ class PodcastDetailController: UIViewController {
             
             collectionLabel.text = podcast.collectionName
             artistNameLabel.text = podcast.artistName
-            
-//            dateLabel.text = podcast.releaseDate.convertISODate()
-            
+                        
             podcastArtImage.getImage(with: podcast.artworkUrl600) { [weak self] (result) in
                 switch result {
                 case .failure:
@@ -69,12 +66,12 @@ class PodcastDetailController: UIViewController {
             PodcastAPIClient.getPodcastById(for: favPodcast.trackId) { [weak self] (result) in
                 switch result {
                 case .failure(let appError):
-                    print(appError)
+                    DispatchQueue.main.async {
+                        self?.showAlert(title: "Error", message: "\(appError)")
+                    }
                 case .success(let podcast):
                     DispatchQueue.main.async {
-                        
-//                        self?.favoritePodcast = podcast
-                        
+    
                         self?.collectionLabel.text = podcast.collectionName
                         self?.artistNameLabel.text = podcast.artistName
                         self?.dateLabel.text = podcast.releaseDate?.convertISODate() ?? "Release Date Unknown"
@@ -100,14 +97,8 @@ class PodcastDetailController: UIViewController {
                             }
                         }
                     }
-                    
                 }
             }
-//            guard let favoritePodcast = favoritePodcast else {
-//                fatalError("error")
-//            }
-//
-//            collectionLabel.text = favoritePodcast.collectionName
         }
     }
     
