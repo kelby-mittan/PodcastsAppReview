@@ -11,20 +11,16 @@ import UIKit
 class PodcastDetailController: UIViewController {
     
     @IBOutlet var podcastArtImage: UIImageView!
-    
     @IBOutlet var collectionLabel: UILabel!
-    
     @IBOutlet var artistNameLabel: UILabel!
-    
     @IBOutlet var dateLabel: UILabel!
-    
     @IBOutlet var favButton: UIBarButtonItem!
-    
     @IBOutlet var genreLabel: UILabel!
     
     var podcast: Podcast?
     var favorite = Bool()
-    var favPodcast: PostPodcast?
+    var favPodcast: Podcast?
+    var favoritePodcast: Podcast?
     var genreArr = [String]()
     
     override func viewDidLoad() {
@@ -48,7 +44,7 @@ class PodcastDetailController: UIViewController {
             collectionLabel.text = podcast.collectionName
             artistNameLabel.text = podcast.artistName
             
-            dateLabel.text = podcast.releaseDate.convertISODate()
+//            dateLabel.text = podcast.releaseDate.convertISODate()
             
             podcastArtImage.getImage(with: podcast.artworkUrl600) { [weak self] (result) in
                 switch result {
@@ -76,10 +72,13 @@ class PodcastDetailController: UIViewController {
                     print(appError)
                 case .success(let podcast):
                     DispatchQueue.main.async {
+                        
+//                        self?.favoritePodcast = podcast
+                        
                         self?.collectionLabel.text = podcast.collectionName
                         self?.artistNameLabel.text = podcast.artistName
-                        self?.dateLabel.text = podcast.releaseDate.convertISODate()
-                        
+                        self?.dateLabel.text = podcast.releaseDate?.convertISODate() ?? "Release Date Unknown"
+
                         guard let genres = podcast.genres else {
                             return
                         }
@@ -87,7 +86,7 @@ class PodcastDetailController: UIViewController {
                             self?.genreArr.append(genre)
                         }
                         self?.genreLabel.text = self?.genreArr.joined(separator: ", ")
-                        
+
                         self?.podcastArtImage.getImage(with: podcast.artworkUrl600) { [weak self] (result) in
                             switch result {
                             case .failure:
@@ -101,8 +100,14 @@ class PodcastDetailController: UIViewController {
                             }
                         }
                     }
+                    
                 }
             }
+//            guard let favoritePodcast = favoritePodcast else {
+//                fatalError("error")
+//            }
+//
+//            collectionLabel.text = favoritePodcast.collectionName
         }
     }
     
@@ -115,9 +120,7 @@ class PodcastDetailController: UIViewController {
             fatalError("could not load podcasts")
         }
         
-        let postedPodcast = PostPodcast(trackId: podcast.trackId, favoritedBy: "Kelby", collectionName: podcast.collectionName, artworkUrl600: podcast.artworkUrl600)
-        
-//        let postedPodcast = Podcast(artistName: podcast.artistName, collectionName: podcast.collectionName, artworkUrl100: podcast.artworkUrl100, artworkUrl600: podcast.artworkUrl600, trackId: podcast.trackId, releaseDate: podcast.releaseDate, favoritedBy: "Kelby", genres: podcast.genres)
+        let postedPodcast = Podcast(artistName: podcast.artistName, collectionName: podcast.collectionName, artworkUrl100: podcast.artworkUrl100, artworkUrl600: podcast.artworkUrl600, trackId: podcast.trackId, releaseDate: podcast.releaseDate, favoritedBy: "Kelby", genres: podcast.genres)
         
         PodcastAPIClient.postPodcast(for: postedPodcast) { [weak self] (result) in
             switch result {

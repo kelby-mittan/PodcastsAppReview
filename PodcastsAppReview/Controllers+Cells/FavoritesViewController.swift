@@ -14,7 +14,7 @@ class FavoritesViewController: UIViewController {
     
     private var refreshControl: UIRefreshControl!
         
-    var podcasts = [PostPodcast]() {
+    var podcasts = [Podcast]() {
         didSet {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -49,7 +49,10 @@ class FavoritesViewController: UIViewController {
             }
             switch results {
             case .failure(let appError):
-                self?.showAlert(title: "Error", message: "\(appError)")
+                DispatchQueue.main.async {
+                    self?.showAlert(title: "Error", message: "\(appError)")
+
+                }
             case .success(let podcasts):
                 DispatchQueue.main.async {
                     self?.podcasts = podcasts
